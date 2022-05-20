@@ -9,4 +9,12 @@
 
 typedef long unsigned int  size_t;
 
+/**
+ * Implementation for the boolean type
+*/
+typedef enum e_bool {
+    true = 1,
+    false = 0
+} bool; // to looks like a native type
+
 #endif // MEMLIB_DEFS
