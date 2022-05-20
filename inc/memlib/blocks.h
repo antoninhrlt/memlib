@@ -24,6 +24,11 @@ typedef struct s_block_meta {
 } *BlockMeta;
 
 /**
+ * Retrieve a memory block from its pointer
+*/
+BlockMeta memlib_block_from_pointer(void* pointer);
+
+/**
  * This solution permits to use free space when it's possible. Well, if you 
  * allocate a block then you free it, it should be possible to re-use it.
  * When no space is found, `request_space` should be called

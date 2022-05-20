@@ -7,6 +7,10 @@
 
 BlockMeta BLOCK_BASE;
 
+BlockMeta memlib_block_from_pointer(void* pointer) {
+    return (BlockMeta) pointer - 1;
+}
+
 BlockMeta memlib_find_free_block(BlockMeta* last, size_t size) {
     BlockMeta current = BLOCK_BASE;
     

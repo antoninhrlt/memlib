@@ -50,4 +50,16 @@ void* memlib_alloc(size_t size) {
     return TO_RETURN;
 }
 
-void memlib_free(void* pointer) {}
+void memlib_free(void* pointer) {
+    // Pointer already invalid, may already freed
+    if (!pointer) {
+        return;
+    }
+
+    BlockMeta block = memlib_block_from_pointer(pointer);
+    block->free = true;
+
+    #ifdef DEBUG
+        block->magic = 0x526783;
+    #endif // DEBUG
+}
