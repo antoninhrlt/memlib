@@ -9,8 +9,11 @@ add_includedirs("inc/")
 target("memlib")
     set_kind("shared")
     add_files("src/*.c")
+    
     if is_mode("debug") then
         add_defines("DEBUG")
+    else
+        add_cflags("-nostdlib")
     end
 
 -- Command : `xmake build test && xmake run test`
