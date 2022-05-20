@@ -5,7 +5,7 @@
 #ifndef MEMLIB_ALLOC
 #define MEMLIB_ALLOC
 
-#include "memlib/defs.h"
+#include "defs.h"
 
 void* memlib_alloc(size_t size);
 void memlib_free(void* pointer);

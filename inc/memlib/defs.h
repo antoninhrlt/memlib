@@ -5,7 +5,7 @@
 #ifndef MEMLIB_DEFS
 #define MEMLIB_DEFS
 
-#define nullptr (void*) -1
+#define nullptr 0
 
 typedef long unsigned int  size_t;
 
