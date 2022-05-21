@@ -5,6 +5,7 @@
 #include "memlib/alloc.h"
 #include "memlib/blocks.h"
 #include "memlib/defs.h"
+#include "memlib/utils.h"
 
 #include <unistd.h>
 
@@ -51,15 +52,39 @@ void* memlib_alloc(size_t size) {
 }
 
 void memlib_free(void* pointer) {
-    // Pointer already invalid, may already freed
+    // Already freed
     if (!pointer) {
         return;
     }
 
     BlockMeta block = memlib_block_from_pointer(pointer);
-    block->free = true;
+    block->is_free = true;
 
     #ifdef DEBUG
         block->magic = 0x526783;
     #endif // DEBUG
+}
+
+void* memlib_realloc(void* pointer, size_t size) {
+    // Already freed
+    if (!pointer) {
+        return nullptr;
+    }
+
+    BlockMeta block = memlib_block_from_pointer(pointer);
+
+    // Enough space, it simply returns the same memory block 
+    if (block->size >= size) {
+        return pointer;
+    }
+
+    // Real new allocation
+    void* new = memlib_alloc(size);
+    if (!new) {
+        return NULL; // system failure
+    }
+
+    memlib_copy(new, pointer, block->size);
+    memlib_free(pointer);
+    return new;
 }

@@ -18,4 +18,13 @@ void* memlib_alloc(size_t size);
 */
 void memlib_free(void* pointer);
 
+/**
+ * Free the allocated space (thanks to its pointer) and do a call to 
+ * `memlib_alloc`, this means that the space memory block will be used if the 
+ * size is the same or a new block will be allocated if the size was increased
+*/
+void* memlib_realloc(void* pointer, size_t size);
+
+// TODO : memlib_calloc()
+
 #endif // MEMLIB_ALLOC
