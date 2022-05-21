@@ -7,5 +7,6 @@
 
 #include "memlib/alloc.h"
 #include "memlib/defs.h"
+#include "memlib/utils.h"
 
 #endif // MEMLIB
